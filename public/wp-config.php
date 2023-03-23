@@ -31,6 +31,28 @@ $table_prefix = env( 'TABLE_PREFIX', 'wp_' );
 // ===============================================
 // No file edits unless explicitly allowed in .env
 // ===============================================
+=======
+	include( __DIR__ . '/../vendor/autoload.php' );
+}
+
+// ===================================================
+// Load database info and local development parameters
+// ===================================================
+if ( file_exists( __DIR__ . '/local-config.php' ) ) {
+	define( 'WP_LOCAL_DEV', true );
+	include( __DIR__ . '/local-config.php' );
+} else {
+	define( 'WP_LOCAL_DEV', false );
+	define( 'DB_NAME', '%%DB_NAME%%' );
+	define( 'DB_USER', '%%DB_USER%%' );
+	define( 'DB_PASSWORD', '%%DB_PASSWORD%%' );
+	define( 'DB_HOST', '%%DB_HOST%%' ); // Probably 'localhost'
+}
+
+// ===========================================================
+// No file edits unless explicitly allowed in local-config.php
+// ===========================================================
+>>>>>>> master
 if ( ! defined( 'DISALLOW_FILE_MODS' ) ) {
 	define( 'DISALLOW_FILE_MODS', true );
 }
